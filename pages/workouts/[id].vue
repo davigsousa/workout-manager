@@ -20,6 +20,14 @@
       <h1 class="m-0 ms-2 mb-1">{{ workout.name }}</h1>
     </header>
 
+    <div class="w-100 px-4 pb-2">
+      <button class="btn btn-primary w-100">
+        <i class="bi bi-plus-circle me-1"></i>
+
+        Add new exercise
+      </button>
+    </div>
+
     <ul class="list-group px-4">
       <li class="card my-2" v-for="exercise in workout.exercises">
         <div class="card-body text-decoration-none d-flex flex-column">
