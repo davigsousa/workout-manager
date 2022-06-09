@@ -6,7 +6,7 @@ const workouts = getWorkouts();
 
 <template>
   <div class="workouts">
-    <h1 class="title">Workouts</h1>
+    <h1>Workouts</h1>
     <ul>
       <li v-for="workout in workouts">
         <NuxtLink :to="'/workouts/' + workout.id">
