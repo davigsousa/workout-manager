@@ -29,12 +29,16 @@
             >
           </div>
 
-          <div v-if="!!exercise.load" class="d-flex flex-row flex-wrap">
-            <strong class="me-2">Load:</strong>
-            <span class="me-2 text-muted text-break">{{ exercise.load }}</span>
+          <div class="d-flex flex-row flex-wrap">
+            <strong v-if="!!exercise.load" class="me-2">Load:</strong>
+            <span v-if="!!exercise.load" class="me-2 text-muted text-break">{{
+              exercise.load
+            }}</span>
 
-            <strong class="me-2">Rest:</strong>
-            <span class="text-muted text-break">{{ exercise.rest }}</span>
+            <strong v-if="!!exercise.rest" class="me-2">Rest:</strong>
+            <span v-if="!!exercise.rest" class="text-muted text-break">{{
+              exercise.rest
+            }}</span>
           </div>
 
           <div v-if="!!exercise.observation" class="d-flex flex-row flex-wrap">
