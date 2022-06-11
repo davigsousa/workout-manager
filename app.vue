@@ -1,5 +1,5 @@
 <template>
-  <div class="main-background vh-100 d-flex justify-content-center">
+  <div class="main-background min-vh-100 d-flex justify-content-center pb-4">
     <main class="w-100" style="max-width: 700px">
       <NuxtPage />
     </main>
