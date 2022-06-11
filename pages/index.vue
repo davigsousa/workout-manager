@@ -14,6 +14,7 @@
           class="form-control"
           id="nameInput"
           placeholder="Some nice name!"
+          v-model="workoutName"
         />
       </div>
 
@@ -45,13 +46,17 @@
 </template>
 
 <script lang="ts" setup>
-import { getWorkouts } from "@/utils/common";
+import { generateId } from "@/utils/common";
+
+const { workouts, addWorkout } = useWorkoutList();
 
 const showNameInput = ref(false);
 const submitInfos = computed(() => ({
   label: showNameInput.value ? "Submit" : "Create new Workout",
   iconName: showNameInput.value ? "check" : "plus-circle",
 }));
+
+const workoutName = ref("");
 
 const submitNewWorkout = (e: Event) => {
   e.preventDefault();
@@ -61,8 +66,12 @@ const submitNewWorkout = (e: Event) => {
     return;
   }
 
+  addWorkout({
+    id: generateId(),
+    name: workoutName.value,
+    exercises: [],
+  });
+  workoutName.value = "";
   showNameInput.value = false;
 };
-
-const workouts = getWorkouts();
 </script>
