@@ -2,9 +2,50 @@
   <div class="main-background min-vh-100 d-flex justify-content-center pb-4">
     <main class="w-100" style="max-width: 700px">
       <NuxtPage />
+
+      <template v-if="ReloadPWAPrompt">
+        <ReloadPWAPrompt />
+      </template>
     </main>
   </div>
 </template>
+
+<script language="ts" setup>
+import ReloadPrompt from "./components/pwa/ReloadPrompt.vue";
+
+const {
+  public: { isDev },
+} = useRuntimeConfig();
+
+useHead({
+  title: "Workout Manager",
+  link: [
+    isDev || {
+      rel: "manifest",
+      href: "/_nuxt/manifest.webmanifest",
+    },
+    {
+      rel: "alternate icon",
+      type: "image/png",
+      sizes: "16x16",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      sizes: "180x180",
+      href: "/apple-touch-icon.png",
+    },
+  ],
+  meta: {
+    name: "theme-color",
+    content: "#ffffff",
+  },
+});
+
+const ReloadPWAPrompt =
+  typeof window !== "undefined" ? defineAsyncComponent(ReloadPrompt) : null;
+</script>
 
 <style>
 .main-background {
