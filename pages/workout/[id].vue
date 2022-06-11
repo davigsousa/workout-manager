@@ -1,15 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <NuxtLink
-        to="/"
-        class="d-flex flex-row align-items-center px-4 text-secondary text-decoration-none"
-      >
-        <i class="bi bi-chevron-double-left"></i>
-
-        <h5 class="m-0 ps-2">Back to Home</h5>
-      </NuxtLink>
-    </nav>
+    <BackHeader to="/" />
 
     <header
       class="d-flex flex-row align-items-center p-4"
@@ -21,11 +12,14 @@
     </header>
 
     <div class="w-100 px-4 pb-2">
-      <button class="btn btn-primary w-100">
+      <NuxtLink
+        :to="'/new-exercise/workout/' + $route.params.id"
+        class="btn btn-primary w-100"
+      >
         <i class="bi bi-plus-circle me-1"></i>
 
         Add new exercise
-      </button>
+      </NuxtLink>
     </div>
 
     <ul class="list-group px-4">

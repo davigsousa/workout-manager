@@ -1,9 +1,3 @@
-<script lang="ts" setup>
-import { getWorkouts } from "@/utils/common";
-
-const workouts = getWorkouts();
-</script>
-
 <template>
   <div>
     <header class="p-4" style="max-width: 500px">
@@ -16,7 +10,7 @@ const workouts = getWorkouts();
       <li class="card my-2" v-for="workout in workouts">
         <NuxtLink
           class="card-body text-decoration-none d-flex flex-row"
-          :to="'/workouts/' + workout.id"
+          :to="'/workout/' + workout.id"
         >
           <div class="flex-fill">
             <h5 class="card-title">{{ workout.name }}</h5>
@@ -31,3 +25,9 @@ const workouts = getWorkouts();
     </ul>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { getWorkouts } from "@/utils/common";
+
+const workouts = getWorkouts();
+</script>
