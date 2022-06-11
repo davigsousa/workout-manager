@@ -17,7 +17,7 @@
     >
       <i :class="'fs-1 bi bi-' + props.iconName"></i>
 
-      <h1 class="m-0 ms-2 mb-1">{{ props.pageTitle }}</h1>
+      <h1 class="m-0 ms-2 mb-1 text-wrap text-break">{{ props.pageTitle }}</h1>
     </header>
   </div>
 </template>

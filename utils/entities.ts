@@ -4,6 +4,7 @@ export interface Exercise {
   sets?: string;
   reps?: string;
   load?: string;
+  rest?: string;
   observation?: string;
 }
 

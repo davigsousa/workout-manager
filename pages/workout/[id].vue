@@ -20,16 +20,21 @@
           class="card-body text-decoration-none d-flex flex-column"
         >
           <div class="d-flex flex-row">
-            <h5 class="card-title flex-fill">
+            <h5 class="card-title flex-grow-1 text-wrap text-break m-0">
               {{ exercise.name }}
             </h5>
 
-            <span>{{ exercise.sets }} x {{ exercise.reps }}</span>
+            <span class="text-nowrap fs-5"
+              >{{ exercise.sets }} x {{ exercise.reps }}</span
+            >
           </div>
 
           <div v-if="!!exercise.load" class="d-flex flex-row flex-wrap">
             <strong class="me-2">Load:</strong>
-            <span class="text-muted text-break">{{ exercise.load }}</span>
+            <span class="me-2 text-muted text-break">{{ exercise.load }}</span>
+
+            <strong class="me-2">Rest:</strong>
+            <span class="text-muted text-break">{{ exercise.rest }}</span>
           </div>
 
           <div v-if="!!exercise.observation" class="d-flex flex-row flex-wrap">

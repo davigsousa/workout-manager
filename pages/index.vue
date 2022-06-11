@@ -32,7 +32,7 @@
           :to="'/workout/' + workout.id"
         >
           <div class="flex-fill">
-            <h5 class="card-title">{{ workout.name }}</h5>
+            <h5 class="card-title text-wrap text-break">{{ workout.name }}</h5>
             <p class="card-text">{{ workout.exercises.length }} exercises</p>
           </div>
 

@@ -41,6 +41,17 @@
       </div>
 
       <div class="mb-3">
+        <label for="restInput" class="form-label">Rest</label>
+        <input
+          type="text"
+          class="form-control"
+          id="restInput"
+          placeholder="40 sec"
+          v-model="rest"
+        />
+      </div>
+
+      <div class="mb-3">
         <label for="loadInput" class="form-label">Load</label>
         <input
           type="text"
@@ -80,6 +91,7 @@ const workoutId = useRoute().params.id as string;
 const name = ref("");
 const sets = ref("");
 const reps = ref("");
+const rest = ref("");
 const load = ref("");
 const observation = ref("");
 
@@ -91,6 +103,7 @@ const handleSubmit = (e: Event) => {
     name: name.value,
     sets: sets.value,
     reps: reps.value,
+    rest: rest.value,
     load: load.value,
     observation: observation.value,
   });
