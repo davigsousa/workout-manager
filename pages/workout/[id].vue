@@ -27,12 +27,12 @@
             <span>{{ exercise.sets }} x {{ exercise.reps }}</span>
           </div>
 
-          <div class="d-flex flex-row flex-wrap">
+          <div v-if="!!exercise.load" class="d-flex flex-row flex-wrap">
             <strong class="me-2">Load:</strong>
             <span class="text-muted text-break">{{ exercise.load }}</span>
           </div>
 
-          <div class="d-flex flex-row flex-wrap">
+          <div v-if="!!exercise.observation" class="d-flex flex-row flex-wrap">
             <strong class="me-2">OBS:</strong>
             <span class="text-muted text-break">{{
               exercise.observation
