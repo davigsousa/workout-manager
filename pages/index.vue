@@ -6,6 +6,24 @@
       <h3 class="fs-5 text-muted">See all your workouts in one place</h3>
     </header>
 
+    <form class="w-100 px-4 pb-2" @submit="submitNewWorkout">
+      <div class="mb-3" v-if="showNameInput">
+        <label for="nameInput" class="form-label">Workout name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="Some nice name!"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">
+        <i :class="'bi bi-' + submitInfos.iconName + ' me-1'"></i>
+
+        {{ submitInfos.label }}
+      </button>
+    </form>
+
     <ul class="list-group px-4">
       <li class="card my-2" v-for="workout in workouts">
         <NuxtLink
@@ -28,6 +46,23 @@
 
 <script lang="ts" setup>
 import { getWorkouts } from "@/utils/common";
+
+const showNameInput = ref(false);
+const submitInfos = computed(() => ({
+  label: showNameInput.value ? "Submit" : "Create new Workout",
+  iconName: showNameInput.value ? "check" : "plus-circle",
+}));
+
+const submitNewWorkout = (e: Event) => {
+  e.preventDefault();
+
+  if (!showNameInput.value) {
+    showNameInput.value = true;
+    return;
+  }
+
+  showNameInput.value = false;
+};
 
 const workouts = getWorkouts();
 </script>
