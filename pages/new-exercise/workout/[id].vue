@@ -6,7 +6,7 @@
       :back-to="'/workout/' + $route.params.id"
     />
 
-    <form class="px-4">
+    <form class="px-4" @submit="handleSubmit">
       <div class="mb-3">
         <label for="nameInput" class="form-label">Name</label>
         <input
@@ -14,6 +14,7 @@
           class="form-control"
           id="nameInput"
           placeholder="Bench Press"
+          v-model="name"
         />
       </div>
 
@@ -24,6 +25,7 @@
           class="form-control"
           id="setsInput"
           placeholder="3"
+          v-model="sets"
         />
       </div>
 
@@ -34,6 +36,7 @@
           class="form-control"
           id="repsInput"
           placeholder="12"
+          v-model="reps"
         />
       </div>
 
@@ -44,6 +47,7 @@
           class="form-control"
           id="loadInput"
           placeholder="20"
+          v-model="load"
         />
       </div>
 
@@ -54,6 +58,7 @@
           class="form-control"
           id="observationInput"
           placeholder="..."
+          v-model="observation"
         />
       </div>
 
@@ -65,4 +70,31 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { generateId } from "~~/utils/common";
+import { addExerciseToWorkout } from "~~/utils/storage";
+
+const router = useRouter();
+const workoutId = useRoute().params.id as string;
+
+const name = ref("");
+const sets = ref("");
+const reps = ref("");
+const load = ref("");
+const observation = ref("");
+
+const handleSubmit = (e: Event) => {
+  e.preventDefault();
+
+  addExerciseToWorkout(Number(workoutId), {
+    id: generateId(),
+    name: name.value,
+    sets: sets.value,
+    reps: reps.value,
+    load: load.value,
+    observation: observation.value,
+  });
+
+  router.push("/workout/" + workoutId);
+};
+</script>

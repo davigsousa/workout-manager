@@ -60,3 +60,20 @@ export function getCachedExercises(workoutId: number) {
 
   return [];
 }
+
+export function addExerciseToWorkout(workoutId: number, exercise: Exercise) {
+  const workouts = getCachedWorkouts();
+
+  const newWorkouts = workouts.map((workout: Workout) => {
+    if (workout.id === workoutId) {
+      return {
+        ...workout,
+        exercises: [exercise, ...workout.exercises],
+      };
+    }
+
+    return workout;
+  });
+
+  cacheWorkouts(newWorkouts);
+}
