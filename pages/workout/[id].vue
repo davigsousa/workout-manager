@@ -1,15 +1,10 @@
 <template>
   <div>
-    <BackHeader to="/" />
-
-    <header
-      class="d-flex flex-row align-items-center p-4"
-      style="max-width: 500px"
-    >
-      <i class="fs-1 bi bi-card-checklist"></i>
-
-      <h1 class="m-0 ms-2 mb-1">{{ workout.name }}</h1>
-    </header>
+    <PageHeader
+      icon-name="card-checklist"
+      :page-title="workout.name"
+      back-to="/"
+    />
 
     <div class="w-100 px-4 pb-2">
       <NuxtLink

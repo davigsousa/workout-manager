@@ -1,5 +1,11 @@
 <template>
-  <h1>New exercise</h1>
+  <div>
+    <PageHeader
+      icon-name="plus-square-fill"
+      page-title="Novo exercício"
+      :back-to="'/workout/' + $route.params.id"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup></script>
