@@ -98,6 +98,11 @@ const observation = ref("");
 const handleSubmit = (e: Event) => {
   e.preventDefault();
 
+  if (!name || !sets || !reps) {
+    alert("Please fill in name, sets and reps fields");
+    return;
+  }
+
   addExerciseToWorkout(Number(workoutId), {
     id: generateId(),
     name: name.value,
