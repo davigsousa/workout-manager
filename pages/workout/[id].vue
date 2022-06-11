@@ -43,6 +43,7 @@
         <button
           v-if="showDeleteExercise[exercise.id]"
           class="btn btn-danger rounded-0"
+          @click="handleDeleteExercise(exercise.id)"
         >
           <i class="bi bi-trash-fill"></i>
         </button>
@@ -65,7 +66,7 @@ import { isNumeric } from "@/utils/common";
 
 const router = useRouter();
 const paramsId = useRoute().params.id as string;
-const { exercises } = useExerciseList(Number(paramsId));
+const { exercises, deleteExercise } = useExerciseList(Number(paramsId));
 
 const workoutId = ref<number | null>(null);
 const workoutName = ref("");
@@ -85,6 +86,14 @@ const handleDeleteWorkout = () => {
 
   deleteWorkoutById(workoutId.value);
   router.push("/");
+};
+
+const handleDeleteExercise = (id: number) => {
+  const shouldDelete = confirm("Are you sure?");
+
+  if (!shouldDelete) return;
+
+  deleteExercise(id);
 };
 
 onMounted(() => {
