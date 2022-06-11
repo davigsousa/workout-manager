@@ -6,10 +6,12 @@ export default defineNuxtConfig({
     "bootstrap/dist/css/bootstrap.css",
     "bootstrap-icons/font/bootstrap-icons.css",
   ],
-  modules: ["@nuxtjs/pwa"],
+  modules: ["@kevinmarrec/nuxt-pwa"],
   pwa: {
     meta: {
-      title: "Workout Manager",
+      name: "Workout Manager",
+      description: "Manage your workouts",
+      theme_color: "#ffffff",
     },
     manifest: {
       name: "Workout Manager",
@@ -19,6 +21,9 @@ export default defineNuxtConfig({
       theme_color: "#fafafa",
       display: "standalone",
       lang: "en",
+    },
+    workbox: {
+      enabled: true,
     },
   },
 });
