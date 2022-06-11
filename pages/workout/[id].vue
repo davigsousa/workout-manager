@@ -1,10 +1,6 @@
 <template>
   <div>
-    <PageHeader
-      icon-name="card-checklist"
-      :page-title="workout.name"
-      back-to="/"
-    />
+    <PageHeader icon-name="list-stars" :page-title="workout.name" back-to="/" />
 
     <div class="w-100 px-4 pb-2">
       <NuxtLink
