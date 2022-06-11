@@ -11,8 +11,6 @@
 </template>
 
 <script language="ts" setup>
-import ReloadPrompt from "./components/pwa/ReloadPrompt.vue";
-
 const {
   public: { isDev },
 } = useRuntimeConfig();
@@ -44,7 +42,9 @@ useHead({
 });
 
 const ReloadPWAPrompt =
-  typeof window !== "undefined" ? defineAsyncComponent(ReloadPrompt) : null;
+  typeof window !== "undefined"
+    ? defineAsyncComponent(() => import("./components/pwa/ReloadPrompt.vue"))
+    : null;
 </script>
 
 <style>
