@@ -14,8 +14,14 @@
     </div>
 
     <ul class="list-group px-4">
-      <li class="card my-2" v-for="exercise in workout.exercises">
-        <div class="card-body text-decoration-none d-flex flex-column">
+      <li
+        class="card my-2 d-flex flex-row"
+        v-for="exercise in workout.exercises"
+      >
+        <div
+          @click="toggleShowDeleteExercise(exercise.id)"
+          class="card-body text-decoration-none d-flex flex-column"
+        >
           <div class="d-flex flex-row">
             <h5 class="card-title flex-fill">
               {{ exercise.name }}
@@ -36,6 +42,13 @@
             }}</span>
           </div>
         </div>
+
+        <button
+          v-if="showDeleteExercise[exercise.id]"
+          class="btn btn-danger rounded-0"
+        >
+          <i class="bi bi-trash-fill"></i>
+        </button>
       </li>
     </ul>
 
@@ -54,4 +67,12 @@ import { getWorkouts } from "@/utils/common";
 
 const workouts = getWorkouts();
 const workout = workouts[0];
+
+interface ShowDeleteExercise {
+  [id: string]: boolean;
+}
+const showDeleteExercise = ref<ShowDeleteExercise>({});
+const toggleShowDeleteExercise = (id: number) => {
+  showDeleteExercise.value[id] = !showDeleteExercise.value[id];
+};
 </script>
