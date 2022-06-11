@@ -9,7 +9,9 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/pwa"],
   pwa: {
     meta: {
-      title: "Workout Manager",
+      name: "Workout Manager",
+      description: "Manage your workouts",
+      theme_color: "#ffffff",
     },
     manifest: {
       name: "Workout Manager",
