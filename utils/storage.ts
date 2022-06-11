@@ -22,6 +22,16 @@ export function getWorkoutById(id: number): Workout | undefined {
   return workouts.find((workout: Workout) => workout.id === id);
 }
 
+export function deleteWorkoutById(id: number) {
+  const workouts = getCachedWorkouts();
+
+  const filteredWorkouts = workouts.filter(
+    (workout: Workout) => workout.id !== id
+  );
+
+  localStorage.setItem(WORKOUTS_STORAGE_KEY, JSON.stringify(filteredWorkouts));
+}
+
 export function cacheExercises(workoutId: number, exercises: Exercise[]) {
   const workouts = getCachedWorkouts();
 

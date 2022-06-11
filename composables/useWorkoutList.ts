@@ -14,9 +14,5 @@ export function useWorkoutList() {
     workouts.value = [workout, ...workouts.value];
   };
 
-  const removeWorkout = (workoutId: number) => {
-    workouts.value = workouts.value.filter((w) => w.id !== workoutId);
-  };
-
-  return { workouts, addWorkout, removeWorkout };
+  return { workouts, addWorkout };
 }

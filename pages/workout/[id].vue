@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageHeader icon-name="list-stars" :page-title="workout.name" back-to="/" />
+    <PageHeader icon-name="list-stars" :page-title="workoutName" back-to="/" />
 
     <div class="w-100 px-4 pb-2">
       <NuxtLink
@@ -14,10 +14,7 @@
     </div>
 
     <ul class="list-group px-4">
-      <li
-        class="card my-2 d-flex flex-row"
-        v-for="exercise in workout.exercises"
-      >
+      <li class="card my-2 d-flex flex-row" v-for="exercise in exercises">
         <div
           @click="toggleShowDeleteExercise(exercise.id)"
           class="card-body text-decoration-none d-flex flex-column"
@@ -53,7 +50,7 @@
     </ul>
 
     <div class="w-100 px-4 py-4">
-      <button class="btn btn-danger w-100">
+      <button @click="handleDeleteWorkout" class="btn btn-danger w-100">
         <i class="bi bi-trash me-1"></i>
 
         Delete workout
@@ -63,10 +60,15 @@
 </template>
 
 <script lang="ts" setup>
-import { getWorkouts } from "@/utils/common";
+import { deleteWorkoutById, getWorkoutById } from "@/utils/storage";
+import { isNumeric } from "@/utils/common";
 
-const workouts = getWorkouts();
-const workout = workouts[0];
+const router = useRouter();
+const paramsId = useRoute().params.id as string;
+const { exercises } = useExerciseList(Number(paramsId));
+
+const workoutId = ref<number | null>(null);
+const workoutName = ref("");
 
 interface ShowDeleteExercise {
   [id: string]: boolean;
@@ -75,4 +77,28 @@ const showDeleteExercise = ref<ShowDeleteExercise>({});
 const toggleShowDeleteExercise = (id: number) => {
   showDeleteExercise.value[id] = !showDeleteExercise.value[id];
 };
+
+const handleDeleteWorkout = () => {
+  const shouldDelete = confirm("Are you sure?");
+
+  if (!shouldDelete) return;
+
+  deleteWorkoutById(workoutId.value);
+  router.push("/");
+};
+
+onMounted(() => {
+  if (isNumeric(paramsId)) {
+    workoutId.value = parseInt(paramsId);
+
+    const workout = getWorkoutById(workoutId.value);
+    if (workout) {
+      workoutName.value = workout.name;
+    } else {
+      router.push("/");
+    }
+  } else {
+    router.push("/");
+  }
+});
 </script>
