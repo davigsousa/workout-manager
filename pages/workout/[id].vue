@@ -38,6 +38,14 @@
         </div>
       </li>
     </ul>
+
+    <div class="w-100 px-4 py-4">
+      <button class="btn btn-danger w-100">
+        <i class="bi bi-trash me-1"></i>
+
+        Delete workout
+      </button>
+    </div>
   </div>
 </template>
 
